@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <style>
+      p { font-size: 12px; }
+    </style>
+  </head>
+  <bodny>
+    <h4>はてぶタグ検索</h4>
+    <p>タグ名</p>
+    <input type="text"   id="tagname">
+    <p>ユーザ数</p>
+    <input type="number" value="50" min="1" setp="1" id="users">
+    <input type="button" value="検索" id="start">
+
+    <script>
+      var users,
+          tagname,
+          createProperties,
+          button  = document.getElementById('start');
+      button.addEventListener('click', function(){
+        users   = document.getElementById('users').value | 0;
+        tagname = document.getElementById('tagname').value;
+        urlstr  = "http://b.hatena.ne.jp/t/" + tagname + "?sort=hot&threshold=" + users
+        createProperties = { url: urlstr }
+        chrome.tabs.create(createProperties);
+      },false);
+    </script>
+  </body>
+</html>
